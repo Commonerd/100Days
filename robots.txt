@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://100days.app/sitemap.xml
+Sitemap: https://100dayscalculate.netlify.app/sitemap.xml
