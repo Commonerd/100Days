@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Use our 100 Days Calculator to easily calculate milestone dates and plan your special events. Perfect for couples, project planners, and life milestones." />
+  <meta name="keywords" content="100 days calculator, 100 days, couple day counter, project milestone calculator, due date, special events planning" />
+  <meta name="author" content="100days.app" />
+  <title>100 Days Calculator | 100days.app</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fefefe;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+    }
+    input[type="date"] {
+      font-size: 1em;
+      padding: 0.5em;
+      margin: 1em 0;
+    }
+    .result {
+      font-size: 1.2em;
+      margin-top: 1em;
+    }
+    footer {
+      font-size: 0.8em;
+      color: #888;
+      margin-top: 3em;
+    }
+  </style>
+</head>
+<body>
+  <h1>100 Days Calculator</h1>
+  <p>Enter a starting date to find the 100th day milestone:</p>
+  <input type="date" id="startDate" />
+  <div class="result" id="result"></div>
+
+  <footer>
+    &copy; 2025 <a href="https://100days.app">100days.app</a>. All rights reserved.
+  </footer>
+
+  <script>
+    const dateInput = document.getElementById('startDate');
+    const result = document.getElementById('result');
+
+    // Load previous date from localStorage
+    window.onload = () => {
+      const savedDate = localStorage.getItem('startDate');
+      if (savedDate) {
+        dateInput.value = savedDate;
+        calculate(savedDate);
+      }
+    };
+
+    dateInput.addEventListener('change', (e) => {
+      const dateStr = e.target.value;
+      localStorage.setItem('startDate', dateStr);
+      calculate(dateStr);
+    });
+
+    function calculate(dateStr) {
+      if (!dateStr) return;
+      const start = new Date(dateStr);
+      const milestone = new Date(start);
+      milestone.setDate(start.getDate() + 99); // Day 0 included, so +99
+      result.textContent = `Your 100th day will be: ${milestone.toDateString()}`;
+    }
+  </script>
+</body>
+</html>
